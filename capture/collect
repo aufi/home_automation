@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+
+import glob
+import json
+import re
+import requests
+
+##
+
+ENDPOINT = "..."
+DC_AUTH_TOKEN = "..."
+
+TEMP_SENSORS = "/sys/bus/w1/devices/28-0000088*/w1_slave"
+
+##
+
+def read_temp(sensors_path):
+  results = []
+  for fname in glob.glob(sensors_path):
+    name = fname.split("/")[-2]
+    temp = float(open(fname, "r").read().split("\n")[1].split("=")[1]) / 1000
+    results.append([name, temp])
+  return results
+
+def post_data(category, name, value = 0, detail = ''):
+  headers =  {'Content-type': 'application/json', 'X-Auth-Token': DC_AUTH_TOKEN}
+  data = {'category': category, 'name': name, 'value': value}
+  requests.post(ENDPOINT, data=json.dumps(data), headers=headers)
+
+##
+
+
+for name, value in read_temp(TEMP_SENSORS):
+  post_data("temperature", name, value)
