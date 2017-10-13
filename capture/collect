@@ -4,6 +4,7 @@ import glob
 import json
 import re
 import requests
+import subprocess
 
 ##
 
@@ -22,6 +23,13 @@ def read_temp(sensors_path):
     results.append([name, temp])
   return results
 
+def list_bt_devices:
+  results = []
+  output = subprocess.Popen('hcitool scan | grep ":" | cut -d" " -f1', stdout=subprocess.PIPE)
+  for btid in output.stdout.readlines()
+    results.append(btid)
+  return results
+
 def post_data(category, name, value = 0, detail = ''):
   headers =  {'Content-type': 'application/json', 'X-Auth-Token': DC_AUTH_TOKEN}
   data = {'category': category, 'name': name, 'value': value}
@@ -29,6 +37,8 @@ def post_data(category, name, value = 0, detail = ''):
 
 ##
 
-
 for name, value in read_temp(TEMP_SENSORS):
   post_data("temperature", name, value)
+
+for btid in list_bt_devices():
+  post_data("bt_presence", btid)
