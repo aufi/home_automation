@@ -1,7 +1,7 @@
 # Haab example config file defines mapping of RPI pins to features
 # we have button and temperature as a input and relay as a output
 ---
-  gateway:
+  bus:
     hostname: '192.168.7.2'
   input:
     button:
