@@ -10,10 +10,9 @@
     pir:
       - topic: 'obyvak/pir'
         pin: 18
-#    1-wire:
-#      temperature:
-#        - topic: 'obyvak/temp'
-#          pin: 17
+    temperature:
+      - topic: 'obyvak/temp'
+        w1_device: '28-021480d719ff'
   output:
     relay:
       - topic: 'obyvak/svetlo1'

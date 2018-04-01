@@ -22,9 +22,8 @@ module Haab
     end
 
     def publish(topic, message, retain = false)
-      puts "#{Time.now} Publishing message:"
       @semaphore_bus.synchronize do
-        puts "    #{topic}: #{message}"
+        puts "#{Time.now} Publishing message #{topic}: #{message}"
         @bus.publish topic, message, retain
       end
     end
