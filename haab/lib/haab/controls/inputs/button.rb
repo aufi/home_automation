@@ -1,15 +1,7 @@
 module Haab
   module Controls
     module Inputs
-      class Button
-        attr_reader :bot, :pin, :topic
-
-        def initialize(bot, options)
-          @bot   = bot
-          @pin   = options['pin'] || raise('Missing PIN')
-          @topic = options['topic'] || raise('Missing topic (ID of control)')
-        end
-
+      class Button < Haab::Controls::Input
         def run
           # pull initial up state
           `gpio -g mode #{pin} up`
@@ -37,12 +29,6 @@ module Haab
             previous_input = input
             sleep 0.1
           end
-        end
-
-        private
-
-        def fire_action(name)
-          @bot.publish @topic, name
         end
       end
     end

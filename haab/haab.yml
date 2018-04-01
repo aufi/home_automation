@@ -7,10 +7,13 @@
     button:
       - topic: 'obyvak/spinac1'
         pin: 21
-    1-wire:
-      temperature:
-        - topic: 'obyvak/temp'
-          pin: 17
+    pir:
+      - topic: 'obyvak/pir'
+        pin: 18
+#    1-wire:
+#      temperature:
+#        - topic: 'obyvak/temp'
+#          pin: 17
   output:
     relay:
       - topic: 'obyvak/svetlo1'
