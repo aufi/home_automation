@@ -1,6 +1,6 @@
 module Haab
   module Controls
-    class InputW1
+    class Input1w
       attr_reader :bot, :w1_device, :topic
 
       def initialize(bot, options)
