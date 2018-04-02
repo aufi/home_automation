@@ -15,8 +15,8 @@ module Haab
 
       private
 
-      def fire_action(name)
-        @bot.publish @topic, name
+      def publish(name, retain = false)
+        @bot.publish @topic, name, retain
       end
     end
   end

@@ -5,7 +5,7 @@ module Haab
         def run
           loop do
             temp = File.read("/sys/bus/w1/devices/#{w1_device}/w1_slave").split("=").last.to_f / 1000
-            fire_action 'obyvak/temp', temp, true
+            publish temp, true
             sleep 300
           end
         end
